@@ -203,9 +203,5 @@ dplyr::glimpse(pnadc_manip)
 # Coloca a PNAD Contínua no formato amostral complexo ---------------------
 
 pnadc_data <- pnadc_manip |>
-  srvyr::as_survey_design(
-    ids = UPA,
-    strata = Estrato,
-    weights = V1032,
-    nest = TRUE
-  )
+  PNADcIBGE::pnadc_design() |>
+  srvyr::as_survey()
